@@ -1,13 +1,15 @@
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    const name = (req.query.name || (req.body && req.body.name));
-    const responseMessage = name
-        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
-
+    const params = req.body.split('&');
+    let param_map = {};
+    params.forEach(param => {
+        const param_item = param.split('=');
+        param_map[param_item[0]] = decodeURI(param_item[1]);
+    });
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: responseMessage
+        headers: {'Content-Type': 'text/json'},
+        body: JSON.stringify(param_map)
     };
 }
