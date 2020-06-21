@@ -7,6 +7,7 @@ module.exports = async function (context, req) {
         const param_item = param.split('=');
         param_map[param_item[0]] = decodeURI(param_item[1]);
     });
+    // context.bindings.outTable = JSON.stringify(param_map);
     context.res = {
         // status: 200, /* Defaults to 200 */
         headers: {'Content-Type': 'text/json'},
