@@ -7,10 +7,14 @@ module.exports = async function (context, req) {
         const param_item = param.split('=');
         param_map[param_item[0]] = decodeURI(param_item[1]);
     });
-    // context.bindings.outTable = JSON.stringify(param_map);
     context.res = {
         // status: 200, /* Defaults to 200 */
         headers: {'Content-Type': 'text/json'},
         body: JSON.stringify(param_map)
     };
+    const now_date = new Date();
+    context.bindings.msg = [];
+    param_map["PartitionKey"] = "Inquery";
+    param_map["RowKey"] = now_date.getTime();
+    context.bindings.msg.push(param_map);
 }
