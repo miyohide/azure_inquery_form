@@ -6,6 +6,8 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "multiparty": "^4.2.1"
+  },
   "devDependencies": {}
 }
