@@ -14,7 +14,7 @@ module.exports = async function (context, req) {
     };
     const now_date = new Date();
     context.bindings.msg = [];
-    param_map["PartitionKey"] = "Inquery";
+    param_map["PartitionKey"] = "Inquiry";
     param_map["RowKey"] = now_date.getTime();
     context.bindings.msg.push(param_map);
 }
